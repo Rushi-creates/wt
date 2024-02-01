@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--ng-app directive tells AngularJS that myApp 
+is the root element of the application -->
+<html ng-app="myApp">
+
+<head>
+    <!--import the angularjs libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js">
+    </script>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+
+        a {
+            margin: 10px;
+            text-decoration: none;
+            color: #343a40;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #007bff;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        
+        .navbar {
+        display: flex;
+        justify-content: center;
+        /* background-color: #CEDDEC; */
+        padding: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: #0067a3;
+        font-weight: bold;
+        margin: 0 20px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .nav-link:hover {
+        background-color: #dbecff;
+    }
+
+    </style>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    
+        h1 {
+            color: #3498db;
+        }
+    
+        h3 {
+            color: #2ecc71;
+            margin-bottom: 30px;
+        }
+    
+ 
+    </style>
+    
+</head>
+
+<body>
+    <h1 style="color: #6634db; font-size: 2em;">PRACTICAL 11</h1>
+    <h3 style="color: #250363; font-size: 1.5em;">Single Page Application in AngularJS</h3>
+    <h3 style="color: #db3434; "font-size: 1.2em;">Click a button to read a :</h3>
+
+    <!--hg-template indicates the pages 
+that get loaded as per requirement-->
+
+
+
+    <script type="text/ng-template" id="first.html">
+<h1>First Page</h1>
+<h2 >
+    Why do programmers prefer dark mode?
+
+    Because light attracts bugs!
+</h2>
+<h3>{{message}}</h3>
+</script>
+
+
+
+
+
+
+
+    <script type="text/ng-template" id="second.html">
+<h1>Second Page</h1>
+<h2 >
+"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill
+</h2>
+<h3>{{message}}</h3>
+</script>
+
+
+
+
+
+
+
+    <script type="text/ng-template" id="third.html">
+<h1>Third Page</h1>
+<h2 >
+    "Hummingbirds are the only birds that can fly backward."
+
+</h2>
+<h3>{{message}}</h3>
+</script>
+
+
+
+
+
+
+
+    <!-- Hyperlinks to load different 
+pages dynamically -->
+<nav class="navbar">
+    <a href="#/" class="nav-link">Joke</a>
+    <a href="#/second" class="nav-link">Quote</a>
+    <a href="#/third" class="nav-link">Fun Fact</a>
+</nav>
+
+
+
+
+
+
+    <!--ng-view includes the rendered template of 
+the current route into the main page-->
+
+    <div ng-view></div>
+    <script>
+        var app = angular.module('myApp', []);
+        var app = angular.module('myApp', ['ngRoute']);
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'first.html',
+                    controller: 'FirstController'
+                })
+                .when('/second', {
+                    templateUrl: 'second.html',
+                    controller: 'SecondController'
+                })
+                .when('/third', {
+                    templateUrl: 'third.html',
+                    controller: 'ThirdController'
+                })
+                .otherwise({ redirectTo: '/' });
+        });
+        // Controller is a JS function that maintains 
+        // application data and behavior using $scope object 
+        // properties and methods can be attached to the 
+        // $scope object inside a controller function 
+        app.controller('FirstController', function ($scope) {
+            $scope.message = 'Hello...this is first page!!!';
+        });
+        app.controller('SecondController', function ($scope) {
+            $scope.message = 'Hello...this is second page!!!';
+        });
+        app.controller('ThirdController', function ($scope) {
+            $scope.message = 'Hello...this is third page!!!';
+        }); 
+    </script>
+</body>
+
+</html>
