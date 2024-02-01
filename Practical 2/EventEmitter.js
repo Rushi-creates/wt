@@ -3,8 +3,9 @@ const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
 function listener1() {
-  console.log("Event received by Listener 1");
+  console.log("Event received by Listener 1 ");
 }
+
 
 function listener2() {
   console.log("Event received by Listener 2");
